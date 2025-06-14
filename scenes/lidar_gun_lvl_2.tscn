@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://duforwdd34nnr"]
+
+[ext_resource type="Texture2D" uid="uid://l0p6uwbvgag2" path="res://assets/LidarComponents/LidarGunOff.png" id="1_wbdcn"]
+[ext_resource type="Script" uid="uid://8c15ne75kxla" path="res://scenes/lidar_gun_lvl_2.gd" id="2_wbdcn"]
+
+[node name="lidar_gun_lvl_2" type="Sprite2D"]
+scale = Vector2(-0.25, 0.25)
+texture = ExtResource("1_wbdcn")
+script = ExtResource("2_wbdcn")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="Node" type="Node" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-15.5, -7.5)
+scale = Vector2(-1, 1)
+target_position = Vector2(2000, 0)
+collision_mask = 2
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(-15.5, -7.5)
+scale = Vector2(-1, 1)
+points = PackedVector2Array(0, 0, 2000, 0)
+width = 1.0
+default_color = Color(1, 0, 0, 1)
