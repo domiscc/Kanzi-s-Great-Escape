@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://demmowcvvhn5r"]
+
+[ext_resource type="Texture2D" uid="uid://c07lml03kg1xi" path="res://assets/Jungle Asset Pack/jungle tileset/jungle tileset.png" id="1_lb1nn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ypfbi"]
+size = Vector2(47, 14)
+
+[node name="StaticPlatform" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lb1nn")
+region_enabled = true
+region_rect = Rect2(80, 32, 48, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_ypfbi")
+one_way_collision = true
