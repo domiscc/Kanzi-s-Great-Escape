@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://dj0y0pgjskqi5"]
+
+[ext_resource type="Script" uid="uid://deu8rxan423h" path="res://scripts/enemy_plant.gd" id="1_p618g"]
+[ext_resource type="Texture2D" uid="uid://bduia1m0eivjv" path="res://assets/Characters/Enemies/Plant.png" id="1_r5xmh"]
+[ext_resource type="PackedScene" uid="uid://lpgh256dyv0e" path="res://scenes/killzone.tscn" id="3_p618g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ah076"]
+atlas = ExtResource("1_r5xmh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7oqwm"]
+atlas = ExtResource("1_r5xmh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcoym"]
+atlas = ExtResource("1_r5xmh")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hcif"]
+atlas = ExtResource("1_r5xmh")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_axj4m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ah076")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7oqwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcoym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hcif")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jn3pj"]
+radius = 9.0
+height = 28.0
+
+[node name="Plant" type="Node2D"]
+script = ExtResource("1_p618g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_axj4m")
+autoplay = "default"
+frame = 2
+frame_progress = 0.637974
+
+[node name="Killzone" parent="." instance=ExtResource("3_p618g")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("CapsuleShape2D_jn3pj")
