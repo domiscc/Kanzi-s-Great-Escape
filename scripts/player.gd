@@ -1,24 +1,25 @@
 extends CharacterBody2D
 
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var score = get_node("/root/game/CanvasLayer/MarginContainer/Score")
 
 # Constants
 const SPEED = 150.0
 const JUMP_VELOCITY = -300.0
 const WALL_CLIMB_SPEED = -50.0
-const MAX_CLIMB_TIME = 1.5
 
 # Variables
 var current_health: int = 3
 var coin_counter = 0
-var climb_time_left: float = MAX_CLIMB_TIME
+var climbing = false
+var max_climb_time = 1.5
+var climb_time_left: float = max_climb_time
 
 func _physics_process(delta: float) -> void:
 	
 	var dir = Input.get_axis("move_left", "move_right")
 
 	# Handle gravity or climbing
-	var climbing = false
 	if is_on_wall() and dir != 0 and climb_time_left > 0.0:
 		velocity.y = WALL_CLIMB_SPEED
 		climb_time_left -= delta
@@ -28,7 +29,7 @@ func _physics_process(delta: float) -> void:
 
 	# Refill climb time when on ground
 	if is_on_floor():
-		climb_time_left = MAX_CLIMB_TIME
+		climb_time_left = max_climb_time
 
 	# Handle jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -63,3 +64,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func set_coin(new_coin_count: int) -> void:
 	coin_counter = new_coin_count
+	score.text = "Score: %d" % coin_counter
+	
+	if coin_counter >= 15:
+		max_climb_time = 2.0

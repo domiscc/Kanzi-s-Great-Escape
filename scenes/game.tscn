@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://chsdab3sc58yb"]
+[gd_scene load_steps=39 format=3 uid="uid://chsdab3sc58yb"]
 
 [ext_resource type="Texture2D" uid="uid://bx5ufvedb0jkb" path="res://assets/Jungle Asset Pack/parallax background/plx-1.png" id="1_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://c07lml03kg1xi" path="res://assets/Jungle Asset Pack/jungle tileset/jungle tileset.png" id="1_yqjtg"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://lpgh256dyv0e" path="res://scenes/killzone.tscn" id="9_vtaks"]
 [ext_resource type="PackedScene" uid="uid://dj0y0pgjskqi5" path="res://scenes/enemy_plant.tscn" id="10_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://dd47kn2dybsc2" path="res://scenes/coin.tscn" id="11_dinhu"]
+[ext_resource type="FontFile" uid="uid://ql8layomxqik" path="res://assets/Fonts/PixelOperator8-Bold.ttf" id="12_kvuet"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("1_yqjtg")
@@ -962,6 +963,8 @@ _data = {
 &"move_left": SubResource("Animation_trtic")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_dinhu"]
+
 [node name="game" type="Node2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -1320,6 +1323,37 @@ position = Vector2(1296, -568)
 
 [node name="Coin50" parent="Coins" instance=ExtResource("11_dinhu")]
 position = Vector2(1328, -568)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+offset = Vector2(10, 10)
+transform = Transform2D(1, 0, 0, 1, 10, 10)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 136.0
+offset_bottom = 92.0
+scale = Vector2(2.5, 2.5)
+
+[node name="Score" type="Label" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("12_kvuet")
+theme_override_font_sizes/font_size = 1
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_dinhu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
 
 [node name="Player" parent="." instance=ExtResource("2_yqjtg")]
 position = Vector2(-2, -27)
