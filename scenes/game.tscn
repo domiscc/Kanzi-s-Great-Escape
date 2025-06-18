@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://chsdab3sc58yb"]
+[gd_scene load_steps=42 format=3 uid="uid://chsdab3sc58yb"]
 
 [ext_resource type="Texture2D" uid="uid://bx5ufvedb0jkb" path="res://assets/Jungle Asset Pack/parallax background/plx-1.png" id="1_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://c07lml03kg1xi" path="res://assets/Jungle Asset Pack/jungle tileset/jungle tileset.png" id="1_yqjtg"]
@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://dj0y0pgjskqi5" path="res://scenes/enemy_plant.tscn" id="10_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://dd47kn2dybsc2" path="res://scenes/coin.tscn" id="11_dinhu"]
 [ext_resource type="FontFile" uid="uid://ql8layomxqik" path="res://assets/Fonts/PixelOperator8-Bold.ttf" id="12_kvuet"]
+[ext_resource type="Texture2D" uid="uid://vb4eodu3ftqt" path="res://assets/Hearts/FullHeart.png" id="13_trtic"]
+[ext_resource type="Script" uid="uid://nwrgieilktmc" path="res://scripts/checkpoint_manager.gd" id="15_ir15t"]
+[ext_resource type="PackedScene" uid="uid://dinfexs8xfdq4" path="res://scenes/checkpoint.tscn" id="16_ca42v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("1_yqjtg")
@@ -1328,32 +1331,41 @@ position = Vector2(1328, -568)
 offset = Vector2(10, 10)
 transform = Transform2D(1, 0, 0, 1, 10, 10)
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+[node name="ScoreContainer" type="MarginContainer" parent="CanvasLayer"]
 offset_left = 20.0
 offset_top = 60.0
 offset_right = 136.0
 offset_bottom = 92.0
 scale = Vector2(2.5, 2.5)
 
-[node name="Score" type="Label" parent="CanvasLayer/MarginContainer"]
+[node name="Score" type="Label" parent="CanvasLayer/ScoreContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("12_kvuet")
 theme_override_font_sizes/font_size = 1
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_dinhu")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Hearts" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 148.0
+offset_bottom = 50.0
+scale = Vector2(1.5, 1.5)
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+[node name="Heart1" type="TextureRect" parent="CanvasLayer/Hearts"]
 layout_mode = 2
+texture = ExtResource("13_trtic")
+expand_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+[node name="Heart2" type="TextureRect" parent="CanvasLayer/Hearts"]
 layout_mode = 2
+texture = ExtResource("13_trtic")
+expand_mode = 2
 
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+[node name="Heart3" type="TextureRect" parent="CanvasLayer/Hearts"]
 layout_mode = 2
+texture = ExtResource("13_trtic")
+expand_mode = 2
 
 [node name="Player" parent="." instance=ExtResource("2_yqjtg")]
 position = Vector2(-2, -27)
@@ -1366,3 +1378,12 @@ limit_left = -630
 limit_right = 3290
 limit_bottom = 160
 position_smoothing_enabled = true
+
+[node name="CheckpointManager" type="Node" parent="."]
+script = ExtResource("15_ir15t")
+
+[node name="Checkpoint" parent="CheckpointManager" instance=ExtResource("16_ca42v")]
+position = Vector2(1704, -168)
+
+[node name="StaticPlatform" parent="." instance=ExtResource("9_0tnpc")]
+position = Vector2(3088, -40)

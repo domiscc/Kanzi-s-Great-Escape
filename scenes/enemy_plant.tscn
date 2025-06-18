@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dj0y0pgjskqi5"]
+[gd_scene load_steps=9 format=3 uid="uid://dj0y0pgjskqi5"]
 
 [ext_resource type="Script" uid="uid://deu8rxan423h" path="res://scripts/enemy_plant.gd" id="1_p618g"]
 [ext_resource type="Texture2D" uid="uid://bduia1m0eivjv" path="res://assets/Characters/Enemies/Plant.png" id="1_r5xmh"]
-[ext_resource type="PackedScene" uid="uid://lpgh256dyv0e" path="res://scenes/killzone.tscn" id="3_p618g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ah076"]
 atlas = ExtResource("1_r5xmh")
@@ -53,7 +52,8 @@ autoplay = "default"
 frame = 2
 frame_progress = 0.637974
 
-[node name="Killzone" parent="." instance=ExtResource("3_p618g")]
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_jn3pj")
