@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 window/size/mode=2
 
+[gui]
+
+theme/custom_font="uid://msiv1s7nb6lm"
+
 [input]
 
 jump={
