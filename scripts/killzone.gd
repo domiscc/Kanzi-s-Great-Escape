@@ -15,3 +15,4 @@ func _on_body_entered(body: Node2D) -> void:
 		if player.current_health > 0:
 			player.velocity = Vector2.ZERO
 			player.global_position = checkpoint_manager.last_location
+			

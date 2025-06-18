@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://chsdab3sc58yb"]
+[gd_scene load_steps=43 format=3 uid="uid://chsdab3sc58yb"]
 
 [ext_resource type="Texture2D" uid="uid://bx5ufvedb0jkb" path="res://assets/Jungle Asset Pack/parallax background/plx-1.png" id="1_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://c07lml03kg1xi" path="res://assets/Jungle Asset Pack/jungle tileset/jungle tileset.png" id="1_yqjtg"]
@@ -10,12 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://cpvwoqrfcqmw" path="res://scenes/moving_platform.tscn" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://demmowcvvhn5r" path="res://scenes/static_platform.tscn" id="9_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://lpgh256dyv0e" path="res://scenes/killzone.tscn" id="9_vtaks"]
-[ext_resource type="PackedScene" uid="uid://dj0y0pgjskqi5" path="res://scenes/enemy_plant.tscn" id="10_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://dj0y0pgjskqi5" path="res://scenes/plant_enemy.tscn" id="10_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://dd47kn2dybsc2" path="res://scenes/coin.tscn" id="11_dinhu"]
 [ext_resource type="FontFile" uid="uid://ql8layomxqik" path="res://assets/Fonts/PixelOperator8-Bold.ttf" id="12_kvuet"]
 [ext_resource type="Texture2D" uid="uid://vb4eodu3ftqt" path="res://assets/Hearts/FullHeart.png" id="13_trtic"]
 [ext_resource type="Script" uid="uid://nwrgieilktmc" path="res://scripts/checkpoint_manager.gd" id="15_ir15t"]
 [ext_resource type="PackedScene" uid="uid://dinfexs8xfdq4" path="res://scenes/checkpoint.tscn" id="16_ca42v"]
+[ext_resource type="PackedScene" uid="uid://cj3d6tkhddg3q" path="res://scenes/teleport_banana.tscn" id="17_rysoc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("1_yqjtg")
@@ -1104,75 +1105,78 @@ position = Vector2(1312, -192)
 [node name="StaticPlatform4" parent="StaticPlatforms" instance=ExtResource("9_0tnpc")]
 position = Vector2(1072, -176)
 
-[node name="Enemy_Plant" type="Node" parent="."]
+[node name="StaticPlatform5" parent="StaticPlatforms" instance=ExtResource("9_0tnpc")]
+position = Vector2(3088, -40)
 
-[node name="Plant" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant_Enemy" type="Node" parent="."]
+
+[node name="Plant" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(880, -56)
 
-[node name="Plant2" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant2" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(1136, -88)
 
-[node name="Plant3" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant3" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(-536, -88)
 
-[node name="Plant4" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant4" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(-504, -88)
 
-[node name="Plant5" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant5" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(-472, -88)
 
-[node name="Plant6" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant6" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(240, -40)
 
-[node name="Plant7" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant7" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(600, -200)
 
-[node name="Plant8" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant8" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(1392, 24)
 
-[node name="Plant9" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant9" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(1840, -184)
 
-[node name="Plant10" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant10" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(2696, 104)
 
-[node name="Plant11" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant11" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(2864, 120)
 
-[node name="Plant12" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant12" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(2936, 120)
 
-[node name="Plant13" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant13" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(1416, -472)
 
-[node name="Plant14" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant14" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(488, -568)
 
-[node name="Plant15" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant15" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(600, -568)
 
-[node name="Plant16" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant16" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(792, -488)
 
-[node name="Plant17" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant17" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(1136, -312)
 
-[node name="Plant18" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant18" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(1016, -312)
 
-[node name="Plant19" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant19" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(3064, -712)
 
-[node name="Plant20" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant20" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(3072, -536)
 
-[node name="Plant21" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant21" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(1664, 24)
 
-[node name="Plant22" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant22" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(1728, 120)
 
-[node name="Plant23" parent="Enemy_Plant" instance=ExtResource("10_kvpfn")]
+[node name="Plant23" parent="Plant_Enemy" instance=ExtResource("10_kvpfn")]
 position = Vector2(80, -536)
 
 [node name="Coins" type="Node" parent="."]
@@ -1327,6 +1331,9 @@ position = Vector2(1296, -568)
 [node name="Coin50" parent="Coins" instance=ExtResource("11_dinhu")]
 position = Vector2(1328, -568)
 
+[node name="TeleportBanana" parent="." instance=ExtResource("17_rysoc")]
+position = Vector2(-632, -256)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 offset = Vector2(10, 10)
 transform = Transform2D(1, 0, 0, 1, 10, 10)
@@ -1374,7 +1381,7 @@ position = Vector2(-2, -27)
 position = Vector2(2, -37)
 zoom = Vector2(4, 4)
 process_callback = 0
-limit_left = -630
+limit_left = -650
 limit_right = 3290
 limit_bottom = 160
 position_smoothing_enabled = true
@@ -1384,6 +1391,3 @@ script = ExtResource("15_ir15t")
 
 [node name="Checkpoint" parent="CheckpointManager" instance=ExtResource("16_ca42v")]
 position = Vector2(1704, -168)
-
-[node name="StaticPlatform" parent="." instance=ExtResource("9_0tnpc")]
-position = Vector2(3088, -40)

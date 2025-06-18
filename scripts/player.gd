@@ -2,10 +2,12 @@ extends CharacterBody2D
 
 # Imports
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var teleport_circle = $TpRadius
 @onready var score = get_node("/root/game/CanvasLayer/ScoreContainer/Score")
 @onready var heart_1 = get_node("/root/game/CanvasLayer/Hearts/Heart1")
 @onready var heart_2 = get_node("/root/game/CanvasLayer/Hearts/Heart2")
 @onready var heart_3 = get_node("/root/game/CanvasLayer/Hearts/Heart3")
+
 
 # Physics
 const SPEED = 150.0
@@ -25,9 +27,16 @@ const MAX_HEALTH = 3
 var current_health: int = 3
 
 # Score
-var coin_counter = 0
+var coin_counter = 0.0
 
+# Teleporting
+const TELEPORT_RADIUS = 200.0
+var can_teleport = false
+	
+	
 func _physics_process(delta: float) -> void:
+	
+	teleport_circle.is_enabled = can_teleport
 	
 	var dir = Input.get_axis("move_left", "move_right")
 
@@ -67,8 +76,16 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
 	
-	
+func _unhandled_input(event: InputEvent) -> void:
+	if can_teleport and event.is_action_pressed("teleport") and current_health > 1:
+		var target = get_global_mouse_position()
+		if global_position.distance_to(target) <= TELEPORT_RADIUS:
+			global_position = target
+			take_damage(1)
+			
+			
 func heal(amount: int) -> void:
 	if current_health < MAX_HEALTH:
 		current_health = min(current_health + amount, MAX_HEALTH)
@@ -87,7 +104,7 @@ func set_coin(new_coin_count: int) -> void:
 	score.text = "Score: %d" % coin_counter
 
 	# Heal 1 heart every 5 coins
-	if int(coin_counter / 5) > int(previous_coin_count / 5):
+	if (coin_counter / 10) > (previous_coin_count / 10):
 		heal(1)
 
 	# Climb boost at 15 coins
@@ -142,10 +159,18 @@ func take_damage(amount: int) -> void:
 	shake_camera()
 
 	if current_health == 0:
-		call_deferred("reload_scene")
+		Engine.time_scale = 0.5
+		set_process(false)
+		set_physics_process(false)
+		$DeathTimer.start()
 		
 		
 func _on_checkpoint_body_entered(body):
 	if body == self:
 		respawn_position = global_position
 		print("Checkpoint reached at:", respawn_position)
+
+
+func _on_death_timer_timeout() -> void:
+	Engine.time_scale = 1.0
+	get_tree().reload_current_scene()

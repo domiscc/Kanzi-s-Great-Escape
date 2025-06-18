@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://yd8ldpva1853"]
+
+[node name="Mushroom" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="WallDetector" type="RayCast2D" parent="."]
+
+[node name="LedgeDetector" type="RayCast2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

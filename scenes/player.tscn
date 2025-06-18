@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhsq16vx8e5mr"]
+[gd_scene load_steps=11 format=3 uid="uid://dhsq16vx8e5mr"]
 
 [ext_resource type="Script" uid="uid://b4uvg70h8b8uu" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://dfqs35d11dh8u" path="res://assets/Characters/Kanzi/kanzi.png" id="2_g2els"]
+[ext_resource type="Script" uid="uid://ddcw3ogml7nmn" path="res://scripts/tp_radius.gd" id="3_qhqgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
 atlas = ExtResource("2_g2els")
@@ -67,4 +68,11 @@ shape = SubResource("CapsuleShape2D_fjrip")
 position = Vector2(1, -14)
 shape = SubResource("CapsuleShape2D_g2els")
 
+[node name="TpRadius" type="Node2D" parent="."]
+script = ExtResource("3_qhqgy")
+
+[node name="DeathTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
