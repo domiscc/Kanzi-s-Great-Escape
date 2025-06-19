@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="623.934_Final_Project"
-run/main_scene="uid://l3mdhii1x6mc"
+run/main_scene="uid://b34ds14ely577"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/mode=2
 
 [input]
 

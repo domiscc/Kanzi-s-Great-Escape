@@ -30,12 +30,12 @@ func _process(delta: float) -> void:
 		#print(mouse_position.x)
 		look_at(mouse_position)
 		
-		if get_viewport().get_mouse_position().x > 576:
+		if get_viewport().get_mouse_position().x > get_viewport().size.x/2:
 			flip_v = false
 			$Line2D.position.y = normal
 			$RayCast2D.position.y = normal
 			
-		if get_viewport().get_mouse_position().x < 576:
+		if get_viewport().get_mouse_position().x < get_viewport().size.x/2:
 			flip_v = true
 			$Line2D.position.y = normal + 15.5
 			$RayCast2D.position.y = normal + 15.5
@@ -56,20 +56,30 @@ func _process(delta: float) -> void:
 			$RayCast2D.enabled = false
 		if $RayCast2D.is_colliding():
 			$Line2D.set_point_position(1, $Line2D.to_local($RayCast2D.get_collision_point()))
-			
-			#var imageTexture = ImageTexture.new()
-			#var dynImage = Image.new()
-			#dynImage.create(32,32,false,Image.FORMAT_RGB8)
-			#dynImage.fill(Color(1,1,1,1))
-			var sprite = Sprite2D.new()
-			#var texture = ImageTexture.create_from_image(dynImage)
-			sprite.texture = load("res://icon.svg")
-			sprite.global_position = $RayCast2D.get_collision_point()
-			sprite.scale.x = 0.01
-			sprite.scale.y = 0.01
-			sprite.material = shader_mat
-			sprite.z_index = 3
-			$Node.add_child(sprite)
+			if $RayCast2D.get_collider() is Area2D:
+				if $RayCast2D.get_collider().is_in_group("coin"):
+					#print("coin hit")
+					$RayCast2D.get_collider().z_index = 6
+					$RayCast2D.get_collider().collision_layer=0
+				if $RayCast2D.get_collider().is_in_group("emerald"):
+					#print("coin hit")
+					$RayCast2D.get_collider().z_index = 6
+					$RayCast2D.get_collider().collision_layer=0
+					
+			else:
+				#var imageTexture = ImageTexture.new()
+				#var dynImage = Image.new()
+				#dynImage.create(32,32,false,Image.FORMAT_RGB8)
+				#dynImage.fill(Color(1,1,1,1))
+				var sprite = Sprite2D.new()
+				#var texture = ImageTexture.create_from_image(dynImage)
+				sprite.texture = load("res://icon.svg")
+				sprite.global_position = $RayCast2D.get_collision_point()
+				sprite.scale.x = 0.01
+				sprite.scale.y = 0.01
+				sprite.material = shader_mat
+				sprite.z_index = 3
+				$Node.add_child(sprite)
 			
 			
 		else:
