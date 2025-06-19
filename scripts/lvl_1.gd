@@ -26,4 +26,7 @@ func _process(_delta: float) -> void:
 
 func _on_transition_area_body_entered(_body: Node2D) -> void:
 	Singleton.health_lvl1 = $Player.current_health
+	call_deferred("load_next_level")
+
+func load_next_level():
 	get_tree().change_scene_to_file("res://scenes/lvl_2.tscn")

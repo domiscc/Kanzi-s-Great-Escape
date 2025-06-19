@@ -67,8 +67,9 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbcm2"]
-size = Vector2(32, 48)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fgwew"]
+radius = 11.4286
+height = 45.7143
 
 [node name="FlyingEnemy" type="CharacterBody2D"]
 scale = Vector2(0.7, 0.7)
@@ -89,4 +90,5 @@ target_position = Vector2(24, 0)
 target_position = Vector2(-24, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("RectangleShape2D_vbcm2")
+scale = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_fgwew")

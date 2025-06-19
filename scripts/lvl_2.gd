@@ -75,5 +75,8 @@ func smaragd_pickup():
 func _on_level_end_body_entered(_body: CharacterBody2D) -> void:
 	Singleton.pos_lvl1 = pos_lvl1
 	Singleton.score_lvl2 = score
+	call_deferred("_change_to_lvl1")
+
+func _change_to_lvl1() -> void:
 	get_tree().change_scene_to_file("res://scenes/lvl1.tscn")
 	

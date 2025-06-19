@@ -50,7 +50,7 @@ z_index = 1
 
 [node name="player_lvl_2" parent="." instance=ExtResource("2_djdqn")]
 z_index = 3
-position = Vector2(239, -699)
+position = Vector2(240, -696)
 
 [node name="lidar_gun_lvl_2" parent="player_lvl_2" instance=ExtResource("3_tct44")]
 z_index = 3

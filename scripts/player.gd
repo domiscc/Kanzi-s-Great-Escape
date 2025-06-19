@@ -32,6 +32,12 @@ var coin_counter: float = Singleton.score_lvl1
 # Teleporting
 const TELEPORT_RADIUS = 200.0
 var can_teleport = false
+
+# Stuck checking
+var stuck_timer = 0.0
+var last_position = Vector2.ZERO
+const STUCK_CHECK_INTERVAL = 0.5  # seconds
+
 	
 func _ready() -> void:
 	score.text = "Score: %d" % coin_counter
@@ -85,7 +91,21 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	
+	if dir != 0:
+		if global_position.distance_to(last_position) < 1.0:
+			stuck_timer += delta
+			if stuck_timer >= STUCK_CHECK_INTERVAL:
+				global_position = respawn_position - Vector2(0, 20)
+				velocity = Vector2.ZERO
+				stuck_timer = 0.0
+		else:
+			stuck_timer = 0.0
+			last_position = global_position
+	else:
+		stuck_timer = 0.0
 
+	
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if can_teleport and event.is_action_pressed("teleport") and current_health > 1:
@@ -104,7 +124,7 @@ func heal(amount: int) -> void:
 	
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("coin"):
-		set_coin(coin_counter + 1)
+		set_coin(int(coin_counter + 1))
 		
 		
 func set_coin(new_coin_count: int) -> void:
@@ -112,8 +132,8 @@ func set_coin(new_coin_count: int) -> void:
 	coin_counter = new_coin_count
 	score.text = "Score: %d" % coin_counter
 
-	# Heal 1 heart every 5 coins
-	if (coin_counter / 10) > (previous_coin_count / 10):
+	# Heal 1 heart every 10 coins
+	if floor(coin_counter / 10) > floor(previous_coin_count / 10):
 		heal(1)
 
 	# Climb boost at 15 coins

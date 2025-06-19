@@ -1222,7 +1222,7 @@ position = Vector2(1680, -248)
 position = Vector2(1864, -520)
 
 [node name="FlyingEnemy9" parent="Flying_Enemy" instance=ExtResource("12_hcc03")]
-position = Vector2(1952, -160)
+position = Vector2(1952, -152)
 
 [node name="Coins" type="Node" parent="."]
 

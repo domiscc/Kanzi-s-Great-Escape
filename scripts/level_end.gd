@@ -10,15 +10,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 	
-
-
-
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		end_level()
-		
-		
-func end_level():
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")  # Replace with your next scene
+		call_deferred("end_level")  # Delay the scene change until it's safe
 
+func end_level():
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	
