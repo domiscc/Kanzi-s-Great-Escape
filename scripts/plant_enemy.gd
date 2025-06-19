@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var player = get_node("/root/game/Player")
+@onready var player = get_node("/root/lvl1/Player")
 @onready var sprite = $AnimatedSprite2D
 
 func _process(_delta):

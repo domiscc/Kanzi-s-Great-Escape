@@ -1,0 +1,335 @@
+[gd_scene load_steps=19 format=3 uid="uid://l3mdhii1x6mc"]
+
+[ext_resource type="Script" path="res://scripts/lvl_2.gd" id="1_0atve"]
+[ext_resource type="PackedScene" uid="uid://cjwr22qpefu4d" path="res://scenes/map_lvl_2.tscn" id="1_ieorc"]
+[ext_resource type="PackedScene" uid="uid://gmavieucx7py" path="res://scenes/player_lvl_2.tscn" id="2_djdqn"]
+[ext_resource type="PackedScene" uid="uid://duforwdd34nnr" path="res://scenes/lidar_gun_lvl_2.tscn" id="3_tct44"]
+[ext_resource type="Texture2D" uid="uid://bxw4dkt3qt7up" path="res://icon.svg" id="4_djdqn"]
+[ext_resource type="Shader" uid="uid://nqg3vfyjajnr" path="res://shaders/black.gdshader" id="4_tct44"]
+[ext_resource type="Texture2D" uid="uid://l0p6uwbvgag2" path="res://assets/LidarComponents/LidarGunOff.png" id="6_e8ep2"]
+[ext_resource type="PackedScene" uid="uid://bjkncn0dxkf0f" path="res://scenes/smaragd_lvl_2.tscn" id="8_lmdrw"]
+[ext_resource type="PackedScene" uid="uid://c001xu22da404" path="res://scenes/coin_lvl_2.tscn" id="9_v64py"]
+[ext_resource type="FontFile" uid="uid://ql8layomxqik" path="res://assets/Fonts/PixelOperator8-Bold.ttf" id="10_v64py"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0atve"]
+shader = ExtResource("4_tct44")
+shader_parameter/value = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7o323"]
+shader = ExtResource("4_tct44")
+shader_parameter/value = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lmdrw"]
+shader = ExtResource("4_tct44")
+shader_parameter/value = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8ep2"]
+size = Vector2(21, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0atve"]
+size = Vector2(94, 472)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7o323"]
+size = Vector2(535, 50)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lmdrw"]
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_v64py"]
+font_size = 41
+
+[node name="lvl_2" type="Node2D" groups=["coin", "emerald"]]
+script = ExtResource("1_0atve")
+
+[node name="map_lvl_2" parent="." instance=ExtResource("1_ieorc")]
+z_index = 1
+
+[node name="player_lvl_2" parent="." instance=ExtResource("2_djdqn")]
+z_index = 3
+position = Vector2(244, -311)
+script = null
+
+[node name="lidar_gun_lvl_2" parent="player_lvl_2" instance=ExtResource("3_tct44")]
+z_index = 3
+z_as_relative = false
+position = Vector2(-1, 7)
+script = null
+
+[node name="Camera2D2" type="Camera2D" parent="player_lvl_2"]
+zoom = Vector2(3, 3)
+limit_right = 750
+metadata/_edit_lock_ = true
+
+[node name="Icon" type="Sprite2D" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_0atve")
+position = Vector2(-521.5, 77)
+scale = Vector2(11.1641, 11.3594)
+texture = ExtResource("4_djdqn")
+metadata/_edit_lock_ = true
+
+[node name="Icon2" type="Sprite2D" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_7o323")
+position = Vector2(521.5, -218)
+scale = Vector2(3.66406, 6.03125)
+texture = ExtResource("4_djdqn")
+metadata/_edit_lock_ = true
+
+[node name="Icon3" type="Sprite2D" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_lmdrw")
+position = Vector2(-504.5, -904)
+scale = Vector2(11.3672, 6.21875)
+texture = ExtResource("4_djdqn")
+metadata/_edit_lock_ = true
+
+[node name="Icon4" type="Sprite2D" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_lmdrw")
+position = Vector2(286, 273)
+scale = Vector2(10.1406, 4.30469)
+texture = ExtResource("4_djdqn")
+metadata/_edit_lock_ = true
+
+[node name="Icon5" type="Sprite2D" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_lmdrw")
+position = Vector2(437, -905.515)
+scale = Vector2(11.625, 2.67946)
+texture = ExtResource("4_djdqn")
+metadata/_edit_lock_ = true
+
+[node name="Icon6" type="Sprite2D" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_lmdrw")
+position = Vector2(605.184, -575.485)
+scale = Vector2(9.57526, 1.28883)
+texture = ExtResource("4_djdqn")
+metadata/_edit_lock_ = true
+
+[node name="LidarPickup" type="Area2D" parent="."]
+position = Vector2(213, -19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LidarPickup"]
+position = Vector2(0.5, -9.5)
+shape = SubResource("RectangleShape2D_e8ep2")
+metadata/_edit_lock_ = true
+
+[node name="LidarGunOff" type="Sprite2D" parent="LidarPickup"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_e8ep2")
+metadata/_edit_lock_ = true
+
+[node name="StartArea" type="Area2D" parent="."]
+position = Vector2(240, -51)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartArea"]
+position = Vector2(0, -197)
+shape = SubResource("RectangleShape2D_0atve")
+metadata/_edit_lock_ = true
+
+[node name="smaragd_lvl_2" parent="." instance=ExtResource("8_lmdrw")]
+position = Vector2(73, -152)
+script = null
+
+[node name="Coin_lvl_2" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-7, -44)
+script = null
+
+[node name="EndArea" type="Area2D" parent="."]
+position = Vector2(285, -695)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndArea"]
+position = Vector2(205.5, -1)
+shape = SubResource("RectangleShape2D_7o323")
+
+[node name="smaragd_lvl_3" parent="." instance=ExtResource("8_lmdrw")]
+position = Vector2(-75, 202)
+script = null
+
+[node name="smaragd_lvl_4" parent="." instance=ExtResource("8_lmdrw")]
+position = Vector2(-499, -114)
+script = null
+
+[node name="smaragd_lvl_5" parent="." instance=ExtResource("8_lmdrw")]
+position = Vector2(-645, -261)
+script = null
+
+[node name="smaragd_lvl_6" parent="." instance=ExtResource("8_lmdrw")]
+position = Vector2(-765, -545)
+script = null
+
+[node name="smaragd_lvl_7" parent="." instance=ExtResource("8_lmdrw")]
+position = Vector2(-508, -534)
+script = null
+
+[node name="smaragd_lvl_8" parent="." instance=ExtResource("8_lmdrw")]
+position = Vector2(27, -349)
+script = null
+
+[node name="smaragd_lvl_9" parent="." instance=ExtResource("8_lmdrw")]
+position = Vector2(94, -413)
+script = null
+
+[node name="smaragd_lvl_10" parent="." instance=ExtResource("8_lmdrw")]
+position = Vector2(-425, -883)
+script = null
+
+[node name="Coin_lvl_3" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-25, -125)
+script = null
+
+[node name="Coin_lvl_4" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-169, -91)
+script = null
+
+[node name="Coin_lvl_5" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-149, 179)
+script = null
+
+[node name="Coin_lvl_6" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-200, 20)
+script = null
+
+[node name="Coin_lvl_7" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-393, -140)
+script = null
+
+[node name="Coin_lvl_8" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-360, -157)
+script = null
+
+[node name="Coin_lvl_9" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-328, -172)
+script = null
+
+[node name="Coin_lvl_10" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-234, -316)
+script = null
+
+[node name="Coin_lvl_11" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-171, -334)
+script = null
+
+[node name="Coin_lvl_12" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-72, -462)
+script = null
+
+[node name="Coin_lvl_13" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-105, -621)
+script = null
+
+[node name="Coin_lvl_14" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-378, -398)
+script = null
+
+[node name="Coin_lvl_15" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-457, -397)
+script = null
+
+[node name="Coin_lvl_16" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-600, -430)
+script = null
+
+[node name="Coin_lvl_17" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-645, -605)
+script = null
+
+[node name="Coin_lvl_18" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-407, -493)
+script = null
+
+[node name="Coin_lvl_19" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-281, -480)
+script = null
+
+[node name="Coin_lvl_20" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-357, -640)
+script = null
+
+[node name="Coin_lvl_21" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-216, -495)
+script = null
+
+[node name="Coin_lvl_22" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-297, -397)
+script = null
+
+[node name="Coin_lvl_23" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-456, -716)
+script = null
+
+[node name="Coin_lvl_24" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-330, -732)
+script = null
+
+[node name="Coin_lvl_25" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-296, -828)
+script = null
+
+[node name="Coin_lvl_26" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-198, -702)
+script = null
+
+[node name="Coin_lvl_27" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-65, -222)
+script = null
+
+[node name="Coin_lvl_28" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-375, -317)
+script = null
+
+[node name="Coin_lvl_29" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-168, -188)
+script = null
+
+[node name="Coin_lvl_30" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-360, -862)
+script = null
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PickupMessage" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -237.0
+offset_top = -62.0
+offset_right = 239.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("10_v64py")
+text = "press e to pickup
+lidar-scanner"
+label_settings = SubResource("LabelSettings_lmdrw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+offset_left = 15.0
+offset_top = 18.0
+offset_right = 272.0
+offset_bottom = 70.0
+theme_override_fonts/font = ExtResource("10_v64py")
+text = "Score: "
+label_settings = SubResource("LabelSettings_v64py")
+
+[node name="smaragd_lvl_11" parent="." instance=ExtResource("8_lmdrw")]
+position = Vector2(-566, -583)
+script = null
+
+[node name="Coin_lvl_31" parent="." instance=ExtResource("9_v64py")]
+position = Vector2(-151, -380)
+script = null
+
+[connection signal="body_entered" from="LidarPickup" to="." method="_on_lidar_pickup_body_entered"]
+[connection signal="body_exited" from="LidarPickup" to="." method="_on_lidar_pickup_body_exited"]
+[connection signal="body_entered" from="StartArea" to="." method="_on_start_area_body_entered"]
+[connection signal="body_exited" from="StartArea" to="." method="_on_start_area_body_exited"]
+[connection signal="body_entered" from="EndArea" to="." method="_on_end_area_body_entered"]
+[connection signal="body_exited" from="EndArea" to="." method="_on_end_area_body_exited"]

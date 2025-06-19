@@ -1,0 +1,93 @@
+[gd_scene load_steps=13 format=3 uid="uid://gmavieucx7py"]
+
+[ext_resource type="Script" uid="uid://bfnqd3e1qfwkp" path="res://scripts/player_lvl_2.gd" id="1_dsem0"]
+[ext_resource type="Shader" uid="uid://dn77dob7r88ny" path="res://shaders/makegray.tres" id="4_kr7l2"]
+[ext_resource type="Texture2D" uid="uid://dfqs35d11dh8u" path="res://assets/Characters/Kanzi/kanzi.png" id="6_2nton"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iyl1e"]
+radius = 6.0
+height = 18.0159
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rnbsm"]
+radius = 6.20122
+height = 18.3099
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dsem0"]
+resource_local_to_scene = true
+shader = ExtResource("4_kr7l2")
+shader_parameter/Enabled = false
+shader_parameter/Tint = Color(0.241156, 0.241156, 0.241156, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nton"]
+atlas = ExtResource("6_2nton")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjflx"]
+atlas = ExtResource("6_2nton")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kr7l2"]
+atlas = ExtResource("6_2nton")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2bnw3"]
+atlas = ExtResource("6_2nton")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q62gy"]
+atlas = ExtResource("6_2nton")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q5bg0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nton")
+}],
+"loop": true,
+"name": &"newidle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjflx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kr7l2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2bnw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q62gy")
+}],
+"loop": true,
+"name": &"newrun",
+"speed": 10.0
+}]
+
+[node name="player_lvl_2" type="CharacterBody2D"]
+collision_layer = 9
+collision_mask = 11
+slide_on_ceiling = false
+floor_stop_on_slope = false
+floor_max_angle = 0.0
+script = ExtResource("1_dsem0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_iyl1e")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_rnbsm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_dsem0")
+position = Vector2(-1.22846, 2.70261)
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_q5bg0")
+animation = &"newrun"
+autoplay = "newrun"
