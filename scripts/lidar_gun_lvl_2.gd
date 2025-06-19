@@ -22,7 +22,7 @@ func _ready() -> void:
 	normal = $Line2D.position.y
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if isPickedUp:
 		visible = true
 		mouse_position = get_global_mouse_position()

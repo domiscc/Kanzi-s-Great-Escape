@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bjkncn0dxkf0f"]
 
-[ext_resource type="Texture2D" uid="uid://bv3sijjf5crat" path="res://assets/spr_coin_strip4_outline.png" id="1_aaxvt"]
-[ext_resource type="Script" uid="uid://b1hlrrsncufc2" path="res://scenes/smaragd_lvl_2.gd" id="1_c67bb"]
+[ext_resource type="Texture2D" uid="uid://bl0bmnjthjecu" path="res://assets/Coin_Gems/spr_coin_strip4_outline.png" id="1_aaxvt"]
+[ext_resource type="Script" uid="uid://b1hlrrsncufc2" path="res://scripts/smaragd_lvl_2.gd" id="1_c67bb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c67bb"]
 radius = 5.0

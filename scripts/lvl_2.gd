@@ -15,9 +15,8 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$CanvasLayer/Score.text = "Score: " + str(score)
-	print(score)
 	if Input.is_action_pressed("ein"):
 		get_node("Icon").get_material().set_shader_parameter("value", 1.0)
 		get_node("Icon2").get_material().set_shader_parameter("value", 1.0)
@@ -39,29 +38,29 @@ func _process(delta: float) -> void:
 			$CanvasLayer/PickupMessage.visible = false
 	
 
-func _on_lidar_pickup_body_entered(body: CharacterBody2D) -> void:
+func _on_lidar_pickup_body_entered(_body: CharacterBody2D) -> void:
 	$CanvasLayer/PickupMessage.visible = true
 	isNearScanner = true
 
 
-func _on_lidar_pickup_body_exited(body: CharacterBody2D) -> void:
+func _on_lidar_pickup_body_exited(_body: CharacterBody2D) -> void:
 	$CanvasLayer/PickupMessage.visible = false
 	isNearScanner = false
 
 
-func _on_start_area_body_entered(body: CharacterBody2D) -> void:
+func _on_start_area_body_entered(_body: CharacterBody2D) -> void:
 	$player_lvl_2.shouldBeGray = false
 
 
-func _on_start_area_body_exited(body: CharacterBody2D) -> void:
+func _on_start_area_body_exited(_body: CharacterBody2D) -> void:
 	$player_lvl_2.shouldBeGray = true
 
 
-func _on_end_area_body_entered(body: CharacterBody2D) -> void:
+func _on_end_area_body_entered(_body: CharacterBody2D) -> void:
 	$player_lvl_2.shouldBeGray = false
 
 
-func _on_end_area_body_exited(body: CharacterBody2D) -> void:
+func _on_end_area_body_exited(_body: CharacterBody2D) -> void:
 	$player_lvl_2.shouldBeGray = true
 
 func coin_pickup():

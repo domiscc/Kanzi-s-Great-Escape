@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://duforwdd34nnr"]
 
 [ext_resource type="Texture2D" uid="uid://l0p6uwbvgag2" path="res://assets/LidarComponents/LidarGunOff.png" id="1_wbdcn"]
-[ext_resource type="Script" uid="uid://8c15ne75kxla" path="res://scenes/lidar_gun_lvl_2.gd" id="2_wbdcn"]
+[ext_resource type="Script" uid="uid://8c15ne75kxla" path="res://scripts/lidar_gun_lvl_2.gd" id="2_wbdcn"]
 
 [node name="lidar_gun_lvl_2" type="Sprite2D"]
 scale = Vector2(-0.25, 0.25)

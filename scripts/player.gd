@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 	
 	teleport_circle.is_enabled = can_teleport
 	
-	var dir = Input.get_axis("move_left", "move_right")
+	var dir = Input.get_axis("left", "right")
 
 	# Handle gravity or climbing
 	if is_on_wall() and dir != 0 and climb_time_left > 0.0:
