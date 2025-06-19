@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://clp6j8tldsdih"]
+
+[ext_resource type="Script" uid="uid://c6oxjhio58eqp" path="res://scripts/flying_enemy.gd" id="1_fgwew"]
+[ext_resource type="Texture2D" uid="uid://bhidchowhl6x6" path="res://assets/Characters/Enemies/FlyingEnemy.png" id="1_vbcm2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgwew"]
+atlas = ExtResource("1_vbcm2")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4a5w"]
+atlas = ExtResource("1_vbcm2")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrtul"]
+atlas = ExtResource("1_vbcm2")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyvm4"]
+atlas = ExtResource("1_vbcm2")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ms2v3"]
+atlas = ExtResource("1_vbcm2")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bv63"]
+atlas = ExtResource("1_vbcm2")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4wu4"]
+atlas = ExtResource("1_vbcm2")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iapyh"]
+atlas = ExtResource("1_vbcm2")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uekyw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgwew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4a5w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrtul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyvm4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ms2v3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bv63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4wu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iapyh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbcm2"]
+size = Vector2(32, 48)
+
+[node name="FlyingEnemy" type="CharacterBody2D"]
+scale = Vector2(0.7, 0.7)
+collision_mask = 2
+script = ExtResource("1_fgwew")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_uekyw")
+autoplay = "default"
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="WallDetectorRight" type="RayCast2D" parent="Hitbox"]
+target_position = Vector2(24, 0)
+
+[node name="WallDetectorLeft" type="RayCast2D" parent="Hitbox"]
+target_position = Vector2(-24, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_vbcm2")

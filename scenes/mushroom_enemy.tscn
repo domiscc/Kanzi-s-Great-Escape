@@ -1,11 +1,102 @@
-[gd_scene format=3 uid="uid://yd8ldpva1853"]
+[gd_scene load_steps=13 format=3 uid="uid://yd8ldpva1853"]
+
+[ext_resource type="Texture2D" uid="uid://y7vu3sru3ptv" path="res://assets/Characters/Enemies/Mushroom-Run.png" id="1_ijtoh"]
+[ext_resource type="Script" uid="uid://ckfg8acojbd87" path="res://scripts/mushroom_enemy.gd" id="1_wuyt4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wuyt4"]
+atlas = ExtResource("1_ijtoh")
+region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88g1x"]
+atlas = ExtResource("1_ijtoh")
+region = Rect2(80, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyflu"]
+atlas = ExtResource("1_ijtoh")
+region = Rect2(160, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjleb"]
+atlas = ExtResource("1_ijtoh")
+region = Rect2(240, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odvja"]
+atlas = ExtResource("1_ijtoh")
+region = Rect2(320, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cksih"]
+atlas = ExtResource("1_ijtoh")
+region = Rect2(400, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xchbw"]
+atlas = ExtResource("1_ijtoh")
+region = Rect2(480, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtvyl"]
+atlas = ExtResource("1_ijtoh")
+region = Rect2(560, 0, 80, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pgrba"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wuyt4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88g1x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyflu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjleb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odvja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cksih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xchbw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtvyl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ijtoh"]
+radius = 16.0
 
 [node name="Mushroom" type="CharacterBody2D"]
+collision_mask = 2
+script = ExtResource("1_wuyt4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pgrba")
+autoplay = "default"
 
-[node name="WallDetector" type="RayCast2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 2
 
-[node name="LedgeDetector" type="RayCast2D" parent="."]
+[node name="WallDetectorRight" type="RayCast2D" parent="Hitbox"]
+position = Vector2(0, 16)
+target_position = Vector2(16, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="WallDetectorLeft" type="RayCast2D" parent="Hitbox"]
+position = Vector2(0, 16)
+target_position = Vector2(-16, 0)
+
+[node name="LedgeDetectorRight" type="RayCast2D" parent="Hitbox"]
+position = Vector2(0, 32)
+target_position = Vector2(16, 0)
+
+[node name="LedgeDetectorLeft" type="RayCast2D" parent="Hitbox"]
+position = Vector2(0, 32)
+target_position = Vector2(-16, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 16)
+shape = SubResource("CircleShape2D_ijtoh")

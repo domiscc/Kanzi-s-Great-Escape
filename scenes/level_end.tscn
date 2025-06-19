@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://so5yr048nwer"]
+
+[ext_resource type="Script" uid="uid://3h5lb5o3o2k3" path="res://scripts/level_end.gd" id="1_07sjm"]
+[ext_resource type="Texture2D" uid="uid://dqe4nx6414yd7" path="res://assets/Flags/SpecialBananaFlag.png" id="1_muv60"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_07sjm"]
+size = Vector2(32, 32)
+
+[node name="LevelEnd" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_07sjm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_muv60")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_07sjm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
