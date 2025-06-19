@@ -1,6 +1,7 @@
 [gd_scene load_steps=48 format=3 uid="uid://chsdab3sc58yb"]
 
 [ext_resource type="Texture2D" uid="uid://bx5ufvedb0jkb" path="res://assets/Jungle Asset Pack/parallax background/plx-1.png" id="1_tpdyh"]
+[ext_resource type="Script" uid="uid://qqtwjsj0rmbq" path="res://scripts/lvl_1.gd" id="1_ufetx"]
 [ext_resource type="Texture2D" uid="uid://w8toireaeqm7" path="res://assets/Jungle Asset Pack/parallax background/plx-2.png" id="2_sx06d"]
 [ext_resource type="Texture2D" uid="uid://ch5272c3s0kku" path="res://assets/Jungle Asset Pack/parallax background/plx-3.png" id="3_ufetx"]
 [ext_resource type="Texture2D" uid="uid://70jl2k527r1p" path="res://assets/Jungle Asset Pack/parallax background/plx-4.png" id="4_rjqds"]
@@ -20,7 +21,6 @@
 [ext_resource type="Script" uid="uid://nwrgieilktmc" path="res://scripts/checkpoint_manager.gd" id="18_cc2me"]
 [ext_resource type="PackedScene" uid="uid://dinfexs8xfdq4" path="res://scenes/checkpoint.tscn" id="19_b8nnd"]
 [ext_resource type="PackedScene" uid="uid://so5yr048nwer" path="res://scenes/level_end.tscn" id="20_xdlxk"]
-[ext_resource type="Script" uid="uid://0qp72o6ds8gm" path="res://scripts/transition_area.gd" id="21_sx06d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("6_kaqyl")
@@ -977,6 +977,7 @@ _data = {
 size = Vector2(103, 54)
 
 [node name="lvl1" type="Node2D"]
+script = ExtResource("1_ufetx")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -1419,13 +1420,13 @@ texture = ExtResource("16_ta5eo")
 expand_mode = 2
 
 [node name="Player" parent="." instance=ExtResource("17_4ff1n")]
-position = Vector2(-131, -34)
+position = Vector2(-61, -29)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(2, -37)
 zoom = Vector2(4, 4)
 process_callback = 0
-limit_left = -650
+limit_left = -675
 limit_right = 3290
 limit_bottom = 160
 position_smoothing_enabled = true
@@ -1443,11 +1444,10 @@ position = Vector2(3152, -712)
 [node name="TransitionArea" type="Area2D" parent="."]
 position = Vector2(-581, 130)
 collision_mask = 2
-script = ExtResource("21_sx06d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionArea"]
 position = Vector2(-2.5, 10)
 shape = SubResource("RectangleShape2D_tpdyh")
 metadata/_edit_lock_ = true
 
-[connection signal="body_entered" from="TransitionArea" to="TransitionArea" method="_on_body_entered"]
+[connection signal="body_entered" from="TransitionArea" to="." method="_on_transition_area_body_entered"]

@@ -27,12 +27,21 @@ const MAX_HEALTH = 3
 var current_health: int = 3
 
 # Score
-var coin_counter = 0.0
+var coin_counter: float = Singleton.score_lvl1
 
 # Teleporting
 const TELEPORT_RADIUS = 200.0
 var can_teleport = false
 	
+func _ready() -> void:
+	score.text = "Score: %d" % coin_counter
+	current_health = Singleton.health_lvl1
+	var hearts = [heart_1, heart_2, heart_3]
+	for i in range(MAX_HEALTH):
+		if i < current_health:
+			hearts[i].texture = preload("res://assets/Hearts/FullHeart.png")
+		else:
+			hearts[i].texture = preload("res://assets/Hearts/EmptyHeart.png")
 	
 func _physics_process(delta: float) -> void:
 	
@@ -173,4 +182,7 @@ func _on_checkpoint_body_entered(body):
 
 func _on_death_timer_timeout() -> void:
 	Engine.time_scale = 1.0
+	Singleton.score_lvl1 = 0
+	Singleton.health_lvl1 = 3
+	Singleton.lvl1_deleted.clear()
 	get_tree().reload_current_scene()

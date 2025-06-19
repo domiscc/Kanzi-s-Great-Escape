@@ -2,10 +2,12 @@ extends Node2D
 
 var isNearScanner = false
 var score
+var pos_lvl1 = Vector2(-668.0,-252.0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	score = 0
+	Singleton.score_lvl2 = score
 	get_node("Icon").get_material().set_shader_parameter("value", 1.0)
 	get_node("Icon2").get_material().set_shader_parameter("value", 1.0)
 	get_node("Icon3").get_material().set_shader_parameter("value", 1.0)
@@ -68,3 +70,10 @@ func coin_pickup():
 	
 func smaragd_pickup():
 	score += 10
+
+
+func _on_level_end_body_entered(_body: CharacterBody2D) -> void:
+	Singleton.pos_lvl1 = pos_lvl1
+	Singleton.score_lvl2 = score
+	get_tree().change_scene_to_file("res://scenes/lvl1.tscn")
+	
