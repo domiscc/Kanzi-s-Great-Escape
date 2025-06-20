@@ -1,8 +1,9 @@
-[gd_scene load_steps=48 format=3 uid="uid://chsdab3sc58yb"]
+[gd_scene load_steps=50 format=3 uid="uid://chsdab3sc58yb"]
 
 [ext_resource type="Texture2D" uid="uid://bx5ufvedb0jkb" path="res://assets/Jungle Asset Pack/parallax background/plx-1.png" id="1_tpdyh"]
 [ext_resource type="Script" uid="uid://qqtwjsj0rmbq" path="res://scripts/lvl_1.gd" id="1_ufetx"]
 [ext_resource type="Texture2D" uid="uid://w8toireaeqm7" path="res://assets/Jungle Asset Pack/parallax background/plx-2.png" id="2_sx06d"]
+[ext_resource type="PackedScene" uid="uid://dro8hk3606noo" path="res://scenes/stopwatch.tscn" id="2_ufetx"]
 [ext_resource type="Texture2D" uid="uid://ch5272c3s0kku" path="res://assets/Jungle Asset Pack/parallax background/plx-3.png" id="3_ufetx"]
 [ext_resource type="Texture2D" uid="uid://70jl2k527r1p" path="res://assets/Jungle Asset Pack/parallax background/plx-4.png" id="4_rjqds"]
 [ext_resource type="Texture2D" uid="uid://bkumra8s4v8ou" path="res://assets/Jungle Asset Pack/parallax background/plx-5.png" id="5_v0a4n"]
@@ -972,12 +973,19 @@ _data = {
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_dinhu"]
+font_size = 42
+
+[sub_resource type="LabelSettings" id="LabelSettings_ufetx"]
+font_size = 20
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tpdyh"]
 size = Vector2(103, 54)
 
-[node name="lvl1" type="Node2D"]
+[node name="lvl1" type="Node2D" node_paths=PackedStringArray("timer_label")]
 script = ExtResource("1_ufetx")
+timer_label = NodePath("CanvasLayer/VBoxContainer/Timer")
+
+[node name="Stopwatch" parent="." instance=ExtResource("2_ufetx")]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -1383,19 +1391,25 @@ position = Vector2(-632, -256)
 offset = Vector2(10, 10)
 transform = Transform2D(1, 0, 0, 1, 10, 10)
 
-[node name="ScoreContainer" type="MarginContainer" parent="CanvasLayer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 offset_left = 20.0
 offset_top = 60.0
-offset_right = 136.0
-offset_bottom = 92.0
-scale = Vector2(2.5, 2.5)
+offset_right = 254.0
+offset_bottom = 96.0
 
-[node name="Score" type="Label" parent="CanvasLayer/ScoreContainer"]
+[node name="Score" type="Label" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("15_qpu2l")
 theme_override_font_sizes/font_size = 1
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_dinhu")
+
+[node name="Timer" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("15_qpu2l")
+theme_override_font_sizes/font_size = 1
+text = "Timer: 00:00:000"
+label_settings = SubResource("LabelSettings_ufetx")
 
 [node name="Hearts" type="HBoxContainer" parent="CanvasLayer"]
 offset_left = 20.0

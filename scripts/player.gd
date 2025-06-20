@@ -3,7 +3,7 @@ extends CharacterBody2D
 # Imports
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var teleport_circle = $TpRadius
-@onready var score = get_node("/root/lvl1/CanvasLayer/ScoreContainer/Score")
+@onready var score = get_node("/root/lvl1/CanvasLayer/VBoxContainer/Score")
 @onready var heart_1 = get_node("/root/lvl1/CanvasLayer/Hearts/Heart1")
 @onready var heart_2 = get_node("/root/lvl1/CanvasLayer/Hearts/Heart2")
 @onready var heart_3 = get_node("/root/lvl1/CanvasLayer/Hearts/Heart3")
