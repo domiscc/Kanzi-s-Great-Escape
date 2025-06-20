@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bisvtvejmotmw"]
+[gd_scene load_steps=3 format=3 uid="uid://bisvtvejmotmw"]
 
 [ext_resource type="AudioStream" uid="uid://mlaq2diyq75b" path="res://assets/Music/POL-mazy-jungle-short.wav" id="1_0rulj"]
+[ext_resource type="Script" uid="uid://dyedwavtrwo5u" path="res://scripts/background_music.gd" id="2_83psx"]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer"]
 stream = ExtResource("1_0rulj")
-volume_db = -30.0
+volume_db = -20.0
 autoplay = true
+script = ExtResource("2_83psx")
