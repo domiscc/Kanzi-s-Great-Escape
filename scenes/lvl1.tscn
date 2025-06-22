@@ -1393,9 +1393,9 @@ transform = Transform2D(1, 0, 0, 1, 10, 10)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 offset_left = 20.0
-offset_top = 60.0
-offset_right = 254.0
-offset_bottom = 96.0
+offset_top = 80.0
+offset_right = 325.0
+offset_bottom = 148.0
 
 [node name="Score" type="Label" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
